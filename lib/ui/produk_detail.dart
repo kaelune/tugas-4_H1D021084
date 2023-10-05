@@ -31,7 +31,7 @@ Text(
 style: const TextStyle(fontSize: 18.0),
 ),
 Text(
-"Harga : R${widget.produk!.hargaProduk.toString()}",
+"Harga : Rp ${widget.produk!.hargaProduk.toString()}",
 style: const TextStyle(fontSize: 18.0),
 ),
 _tombolHapusEdit()
