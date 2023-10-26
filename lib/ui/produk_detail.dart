@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tokokita/model/produk.dart';
+import 'package:tokokita/bloc/produk_bloc.dart';
 import 'package:tokokita/ui/produk_form.dart';
+import 'package:tokokita/ui/produk_page.dart';
 
 class ProdukDetail extends StatefulWidget {
 Produk? produk;
@@ -58,18 +60,26 @@ produk: widget.produk!,
 }),
 //Tombol Hapus
 OutlinedButton(
-child: const Text("DELETE"), onPressed: () => confirmHapus()),
+child: const Text("DELETE"), onPressed: () => confirmHapus(widget.produk!)),
 ],
 );
 }
-void confirmHapus() {
+
+void confirmHapus(produk) {
 AlertDialog alertDialog = AlertDialog(
 content: const Text("Yakin ingin menghapus data ini?"),
 actions: [
 //tombol hapus
 OutlinedButton(
 child: const Text("Ya"),
-onPressed: () {},
+onPressed: () async {
+ProdukBloc.deleteProduk(id: produk.id).then((value) => 
+Navigator.push(
+context,
+MaterialPageRoute(
+builder: (context) => ProdukPage()
+)));
+},
 ),
 //tombol batal
 OutlinedButton(
